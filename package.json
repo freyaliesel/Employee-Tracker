@@ -1,0 +1,34 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "CLI based CMS application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freyaliesel/Employee-Tracker.git"
+  },
+  "keywords": [
+    "CMS",
+    "CLI",
+    "Node.js",
+    "MySQL",
+    "Inquirer",
+    "JavaScript"
+  ],
+  "author": "K Glidden",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/freyaliesel/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/freyaliesel/Employee-Tracker#readme",
+  "dependencies": {
+    "ascii-art": "^2.8.5",
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.2",
+    "mysql2": "^2.3.3"
+  }
+}
