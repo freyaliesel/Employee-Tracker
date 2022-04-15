@@ -1,5 +1,7 @@
 # Employee Tracker
 
+![GitHub top language](https://img.shields.io/github/languages/top/freyaliesel/Employee-Tracker)
+
 ## Description
 
 Content management system application run in the command line
@@ -13,7 +15,16 @@ Content management system application run in the command line
 
 ## Installation
 
-Install node dependencies in the command line via `npm i` MySQL is also required for this application to run.
+Install node dependencies in the command line via `npm i`  
+MySQL is also required for this application to run.  
+A `.env` file is required in the root folder, to hold the following code:
+
+```code
+DB_HOST=ip
+DB_USER=username
+DB_PASSWORD=pass
+DB_DATABASE=mydb
+```
 
 ## Usage
 
