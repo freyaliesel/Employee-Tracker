@@ -20,7 +20,6 @@ MySQL is also required for this application to run.
 A `.env` file is required in the root folder, to hold the following code:
 
 ```code
-DB_HOST=ip
 DB_USER=username
 DB_PASSWORD=pass
 DB_DATABASE=mydb
