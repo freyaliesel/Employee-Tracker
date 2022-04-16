@@ -12,9 +12,8 @@ describe("Department", () => {
             expect(dept.name).toEqual("Shoes");
             expect(dept.id).toEqual(5);
         });
-
     });
-    describe("Error Catching", () => {
+    describe("Error Checking", () => {
         it("should throw an error if provided no arguments", () => {
             const cb = () => new Department();
             expect(cb).toThrow();

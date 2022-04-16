@@ -1,14 +1,13 @@
 function isValidString(value) {
-    if (typeof value !== "string" || !value.trim().length) {
+    if (!value || typeof value !== "string" || !value.trim().length) {
         return false;
     } else {
         return true;
     }
 }
 
-function isValidNumber(arg) {
-    let value = arg;
-    if (value === true) {
+function isValidNumber(value) {
+    if (!value || value === true) {
         return false;
     }
     if (typeof value !== "number") {
@@ -21,7 +20,17 @@ function isValidNumber(arg) {
     }
 }
 
+function isValidSalary(value) {
+    if (!value || typeof value !== "number" || value < 7.25) return false;
+    if (value >= 10000 && value < 35568) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 module.exports = {
     isValidString,
-    isValidNumber
-}
+    isValidNumber,
+    isValidSalary,
+};
