@@ -1,5 +1,5 @@
 const { it, expect } = require("@jest/globals");
-const { isValidString, isValidNumber, isValidSalary } = require("../utils/Functions.js");
+const { isValidString, isValidNumber, isValidSalary } = require("../utils/utilfunctions.js");
 
 describe("Functions", () => {
     describe("isValidString", () => {
