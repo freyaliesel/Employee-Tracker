@@ -38,8 +38,8 @@ describe("Functions", () => {
         it("should return true when passed a valid hourly or yearly salary", () => {
             expect(isValidSalary(275.80)).toEqual(true);
             expect(isValidSalary(35568)).toEqual(true);
-            expect(500895).toEqual(true);
-            expect(7.25).toEqual(true);
+            expect(isValidSalary(500895)).toEqual(true);
+            expect(isValidSalary(7.25)).toEqual(true);
         });
         it("should return false when not passed a parameter", () => {
             expect(isValidSalary()).toEqual(false);
