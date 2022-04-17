@@ -10,7 +10,7 @@ view.get("/depts", (req, res) => {
 
 view.get("/roles", (req, res) => {
     db.query(
-        ``,
+        `SELECT roles.id, title, salary, departments.dept_name FROM roles JOIN departments ON department_id = departments.id;`,
         function (err, results) {
             let [code, message] = handleDbResponse(err, results, "get");
             res.status(code).json(message);
