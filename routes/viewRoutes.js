@@ -1,20 +1,21 @@
-const db = require("../utils/db")
+const db = require("../utils/db");
 const view = require("express").Router();
+const { handleDbResponse } = require("../utils/utilfunctions");
 
-view.get('/alldept', (req, res) => {
+view.get("/depts", (req, res) => {
     db.query("SELECT * FROM departments", function (err, results) {
-        if(err){
-            console.error(err);
-            res.status(400).json(`Error in database query`)
-        } else {
-            console.table(results);
+        res.status(code).json(message);
+    });
+});
+
+view.get("/roles", (req, res) => {
+    db.query(
+        ``,
+        function (err, results) {
+            let [code, message] = handleDbResponse(err, results, "get");
+            res.status(code).json(message);
         }
-        response = {
-            status: 'success',
-            data: `Departments relayed from database`
-        }
-        res.status(200).json(`${req.method} request received`)
-    })
-})
+    );
+});
 
 module.exports = view;
