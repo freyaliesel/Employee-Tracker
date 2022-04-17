@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
-const db = require("./routes/db")
-
+const db = require("./utils/db")
 
 const PORT = process.env.PORT || 3001;
 
