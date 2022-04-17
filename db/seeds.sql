@@ -32,26 +32,26 @@ VALUES
     ("Office Administrator", 41500, 1);
 
 INSERT INTO
-    employees(id, first_name, last_name, role_id, manager_id)
+    employees(first_name, last_name, role_id, manager_id)
 VALUES
-    (4, "Michael", "Scott", 1, null),
-    (7, "Toby", "Flenderson", 3, null),
-    (1, "Creed", "Bratton", 9, 4),
-    (2, "Stanley", "Hudson", 11, 14),
-    (3, "Phyllis", "Lapin-Vance", 12, 14),
-    (5, "Dwight", "Schrute", 11, 14),
-    (6, "Meredith", "Palmer", 7, 4),
-    (8, "Angela", "Martin", 4, 4),
-    (9, "Oscar", "Martinez", 5, 8),
-    (10, "Darryl", "Philbin", 14, 4),
-    (11, "Andy", "Bernard", 12, 14),
-    (12, "Lonnis", "Collins", 15, 10),
-    (13, "Kevin", "Malone", 6, 8),
-    (14, "Jim", "Halpert", 11, 4),
-    (15, "Kelly", "Kapoor", 8, 4),
-    (16, "Madge", "Madsen", 15, 10),
-    (17, "Pam", "Halpert", 16, 4),
-    (18, "Roy", "Anderson", 15, 10),
-    (19, "Jerry", "DiCanio", 15, 10),
-    (20, "Ryan", "Howard", 13, 14),
-    (21, "Kelly Erin", "Hannon", 10, 17);
+    ("Michael", "Scott", 1, null),
+    ("Toby", "Flenderson", 3, null),
+    ("Darryl", "Philbin", 14, null),
+    ("Jim", "Halpert", 11, 1),
+    ("Angela", "Martin", 4, 1),
+    ("Pam", "Halpert", 16, 1),
+    ("Creed", "Bratton", 9, 1),
+    ("Stanley", "Hudson", 11, 5),
+    ("Phyllis", "Lapin-Vance", 12, 5),
+    ("Dwight", "Schrute", 11, 5),
+    ("Meredith", "Palmer", 7, 1),
+    ("Oscar", "Martinez", 5, 4),
+    ("Andy", "Bernard", 12, 5),
+    ("Lonnis", "Collins", 15, 3),
+    ("Kevin", "Malone", 6, 4),
+    ("Kelly", "Kapoor", 8, 1),
+    ("Madge", "Madsen", 15, 3),
+    ("Roy", "Anderson", 15, 4),
+    ("Jerry", "DiCanio", 15, 4),
+    ("Ryan", "Howard", 13, 5),
+    ("Kelly Erin", "Hannon", 10, 6);
