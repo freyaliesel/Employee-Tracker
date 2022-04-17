@@ -21,7 +21,7 @@ const {
 // F add an employee prompts user to enter first and last names, role, and manager, creates new employee in database
 // G update employee role prompts user to select an employee to update, enter their new role
 
-function init() {
+function main() {
     inquirer.prompt(mainMenu).then((res) => {
         if (res.menu === "Exit") {
             return;
@@ -31,18 +31,24 @@ function init() {
     });
 }
 
-function orgOptions(prompt) {
+function orgOptions(choice) {
     let view = "View Organization";
-    let questions = prompt === view ? viewOptions : editOptions;
+    let questions = choice === view ? viewOptions : editOptions;
+    // console.log(questions);
     inquirer.prompt(questions).then((res) => {
-        if (res.menu === "Exit application") {
+        if (res.menu === "Exit application\n") {
             return;
         } else if (res.menu === "Return to main menu") {
-            init();
+            main();
         } else {
-            questions === view ? viewQueries(res.menu) : editQueries(res);
+            if (questions === viewOptions) {
+                viewQueries(res)
+            } else {
+                editQueries(res);
+            }
+            orgOptions(choice);
         }
     });
 }
 
-init();
+main();

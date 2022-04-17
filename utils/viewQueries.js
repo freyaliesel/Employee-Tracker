@@ -1,12 +1,10 @@
 "use strict";
 
-function viewQueries(choice) {
+function viewQueries(res) {
     // switch case for calling which endpoint for viewing
-    switch (choice) {
-        // case value:
-        //     break;
-        // case value:
-        //     break;
+    console.log("view called")
+    // console.log(res);
+    switch (res.menu) {
         // case value:
         //     break;
         // case value:
@@ -14,7 +12,7 @@ function viewQueries(choice) {
         // case value:
         //     break;
         default:
-            console.log("Viewing logic goes here")
+            console.log(`\nViewing logic goes here\n`)
             break;
     }
 }

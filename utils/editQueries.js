@@ -1,8 +1,9 @@
 "use strict";
 
-function editQueries(choice) {
+function editQueries(res) {
     // switch case for determining which query to get for editing
-    switch (choice) {
+    console.log("edit called");
+    switch (res.menu) {
         // case value:
         //     break;
         // case value:
@@ -14,7 +15,7 @@ function editQueries(choice) {
         // case value:
         //     break;
         default:
-            console.log("Editing logic goes here")
+            console.log("\nEditing logic goes here\n");
             break;
     }
 }
