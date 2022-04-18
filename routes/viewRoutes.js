@@ -18,4 +18,14 @@ view.get("/roles", (req, res) => {
     );
 });
 
+view.get("/employees", (req, res) => {
+    db.query(
+        `SELECT e.id, CONCAT(e.last_name, ', ', e.first_name) AS Employee, roles.title, roles.salary, e.manager_id, CONCAT(m.last_name, ', ', m.first_name) AS Manager, departments.dept_name FROM employees e JOIN roles ON e.role_id = roles.id JOIN departments ON roles.department_id = departments.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY e.id;`,
+        function (err, results) {
+            let [code, message] = handleDbResponse(err, results, "get");
+            res.status(code).json(message);
+        }
+    );
+});
+
 module.exports = view;
