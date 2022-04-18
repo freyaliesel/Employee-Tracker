@@ -19,16 +19,16 @@ VALUES
     ("Human Resources Representative", 50000, 3),
     ("Senior Accountant", 56500, 2),
     ("Accountant", 51000, 2),
-    ("Junior Accountant", 20, 2),
+    ("Junior Accountant", 37000, 2),
     ("Supplier Relations Representative", 4100, 4),
     ("Customer Service Representative", 38500, 4),
     ("Quality Assurance Representative", 39700, 4),
-    ("Receptionist", 20, 5),
+    ("Receptionist", 41600, 5),
     ("Senior Sales Representative", 42000, 6),
     ("Sales Representative", 37000, 6),
-    ("Temp", 18.50, 6),
+    ("Temp", 38480, 6),
     ("Warehouse Foreman", 50000, 7),
-    ("Warehouse Associate", 17.75, 7),
+    ("Warehouse Associate", 36920, 7),
     ("Office Administrator", 41500, 1);
 
 INSERT INTO
