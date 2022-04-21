@@ -2,14 +2,13 @@
 
 // dependencies
 const inquirer = require("inquirer");
-const viewQueries = require("./utils/viewQueries.js");
 const editQueries = require("./utils/editQueries.js");
 const {
     mainMenu,
     viewOptions,
     editOptions,
 } = require("./utils/inquirerQuestions.js");
-
+const orgDb = require("./utils/viewRoutes");
 // prompt user for input - should be recursive
 
 // REQUIRED
@@ -24,7 +23,7 @@ const {
 function main() {
     inquirer.prompt(mainMenu).then((res) => {
         if (res.menu === "Exit") {
-            return;
+            process.kill(process.pid, "SIGTERM");
         } else {
             orgOptions(res.menu);
         }
@@ -34,7 +33,6 @@ function main() {
 function orgOptions(choice) {
     let view = "View Organization";
     let questions = choice === view ? viewOptions : editOptions;
-    // console.log(questions);
     inquirer.prompt(questions).then((res) => {
         if (res.menu === "Exit application\n") {
             return;
@@ -42,13 +40,36 @@ function orgOptions(choice) {
             main();
         } else {
             if (questions === viewOptions) {
-                viewQueries(res)
+                viewQueries(res);
             } else {
                 editQueries(res);
             }
-            orgOptions(choice);
         }
     });
+}
+
+function viewQueries(res) {
+    switch (res.menu) {
+        case "View all departments":
+            orgDb
+                .getDepartments()
+                .then(([results]) => console.log(`\n${results}\n`));
+            break;
+        case "View all roles":
+            break;
+        case "View all employees":
+            break;
+        case "View employees by department":
+            break;
+        case "View employees by role":
+            break;
+        case "View employees by manager":
+            break;
+        case "View total budget by department":
+            break;
+        default:
+            return;
+    }
 }
 
 main();
