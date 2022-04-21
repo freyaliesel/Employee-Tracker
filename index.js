@@ -20,35 +20,37 @@ function main() {
         if (res.menu === "Exit") {
             process.kill(process.pid, "SIGTERM");
         } else {
-            orgOptions(res.menu);
-        }
-    });
-}
-
-function orgOptions(choice) {
-    let view = "View Organization";
-    let query = choice === view ? queries.viewOptions : queries.editOptions;
-    inquirer.prompt(query).then((res) => {
-        if (res.menu === "Exit application\n") {
-            return;
-        } else if (res.menu === "Return to main menu") {
-            main();
-        } else {
-            if (query === queries.viewOptions) {
-                handleViewQueries(res);
-            } else {
-                handleEditQueries(res);
+            // handleMenuResponse(res.menu);
+            let query = res.menu.includes("View")
+                ? queries.viewOptions
+                : queries.editOptions;
+                inquirer
+                .prompt(query)
+                .then((res) => handleOptionsResponse(res.menu));
             }
-        }
     });
 }
 
-function handleViewQueries(res) {
-    switch (res.menu) {
+function handleOptionsResponse(choice) {
+    if (choice.includes("Exit")) {
+        return;
+    } else if (choice.includes("Return")) {
+        main();
+    } else if (choice.includes("View")) {
+        handleViewQueries(choice);
+    } else {
+        handleEditQueries(choice);
+    }
+}
+
+function handleViewQueries(choice) {
+    switch (choice) {
         case "View all departments":
-            orgDb
-                .getDepartments()
-                .then(([results]) => console.log(`\n${results}\n`));
+            orgDb.getDepartments().then(
+                () =>
+                    ([results]) =>
+                        console.log(`\n${results}\n`)
+            );
             break;
         case "View all roles":
             break;
@@ -65,6 +67,9 @@ function handleViewQueries(res) {
         default:
             return;
     }
+    inquirer
+        .prompt(queries.viewOptions)
+        .then((res) => handleOptionsResponse(res.menu));
 }
 
 function handleEditQueries(res) {
