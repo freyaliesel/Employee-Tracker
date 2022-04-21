@@ -2,13 +2,8 @@
 
 // dependencies
 const inquirer = require("inquirer");
-const editQueries = require("./utils/editQueries.js");
-const {
-    mainMenu,
-    viewOptions,
-    editOptions,
-} = require("./utils/inquirerQuestions.js");
-const orgDb = require("./utils/viewRoutes");
+const queries = require("./utils/inquirerQuestions");
+const orgDb = require("./utils/dbQueries");
 // prompt user for input - should be recursive
 
 // REQUIRED
@@ -21,7 +16,7 @@ const orgDb = require("./utils/viewRoutes");
 // G update employee role prompts user to select an employee to update, enter their new role
 
 function main() {
-    inquirer.prompt(mainMenu).then((res) => {
+    inquirer.prompt(queries.mainMenu).then((res) => {
         if (res.menu === "Exit") {
             process.kill(process.pid, "SIGTERM");
         } else {
@@ -32,23 +27,23 @@ function main() {
 
 function orgOptions(choice) {
     let view = "View Organization";
-    let questions = choice === view ? viewOptions : editOptions;
-    inquirer.prompt(questions).then((res) => {
+    let query = choice === view ? queries.viewOptions : queries.editOptions;
+    inquirer.prompt(query).then((res) => {
         if (res.menu === "Exit application\n") {
             return;
         } else if (res.menu === "Return to main menu") {
             main();
         } else {
-            if (questions === viewOptions) {
-                viewQueries(res);
+            if (query === queries.viewOptions) {
+                handleViewQueries(res);
             } else {
-                editQueries(res);
+                handleEditQueries(res);
             }
         }
     });
 }
 
-function viewQueries(res) {
+function handleViewQueries(res) {
     switch (res.menu) {
         case "View all departments":
             orgDb
@@ -69,6 +64,48 @@ function viewQueries(res) {
             break;
         default:
             return;
+    }
+}
+
+function handleEditQueries(res) {
+    // switch case for determining which query to get for editing
+    console.log("edit called");
+    switch (res.menu) {
+        case "Add a department":
+            // inquirer prompts then
+            addDepartment(deptName);
+            break;
+        case "Add a role":
+            // inquirer prompts then
+            addRole(title, salary, deptId);
+            break;
+        case "Add an employee":
+            // inquirer prompts then
+            addEmployee(firstName, lastName, roleId, managerId);
+            break;
+        case "Update role":
+            // inquirer prompts then
+            updateEntry(table, values);
+            break;
+        case "Update employee":
+            // inquirer prompts then
+            updateEntry(table, values);
+            break;
+        case "Remove department":
+            // inquirer prompts then
+            removeEntry(table, id);
+            break;
+        case "Remove role":
+            // inquirer prompts then
+            removeEntry(table, id);
+            break;
+        case "Remove employee":
+            // inquirer prompts then
+            removeEntry(table, id);
+            break;
+        default:
+            console.log("\nEditing logic goes here\n");
+            break;
     }
 }
 

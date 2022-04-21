@@ -17,4 +17,13 @@ process.on("SIGTERM", () => {
     });
 });
 
+// let value = "new_department"
+
+// db.query(`INSERT INTO departments (dept_name) VALUES (?)`, value, (err, result) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(result);
+// });
+
 module.exports = db;
