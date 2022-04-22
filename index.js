@@ -4,6 +4,7 @@
 const inquirer = require("inquirer");
 const queries = require("./utils/inquirerQuestions");
 const orgDb = require("./utils/dbQueries");
+const { json } = require("express/lib/response");
 // prompt user for input - should be recursive
 
 // REQUIRED
@@ -20,58 +21,50 @@ function main() {
         if (res.menu === "Exit") {
             process.kill(process.pid, "SIGTERM");
         } else {
-            // handleMenuResponse(res.menu);
             let query = res.menu.includes("View")
                 ? queries.viewOptions
                 : queries.editOptions;
-                inquirer
-                .prompt(query)
-                .then((res) => handleOptionsResponse(res.menu));
-            }
+            subMenu(query);
+        }
     });
 }
 
-function handleOptionsResponse(choice) {
-    if (choice.includes("Exit")) {
-        return;
-    } else if (choice.includes("Return")) {
-        main();
-    } else if (choice.includes("View")) {
-        handleViewQueries(choice);
-    } else {
-        handleEditQueries(choice);
-    }
+function subMenu(query) {
+    inquirer.prompt(query).then((res) => handleOptionsResponse(res.menu));
 }
 
-function handleViewQueries(choice) {
+const handleViewQueries = async (choice) => {
+    let results;
     switch (choice) {
         case "View all departments":
-            orgDb.getDepartments().then(
-                () =>
-                    ([results]) =>
-                        console.log(`\n${results}\n`)
-            );
+            [results] = await orgDb.getDepartments();
             break;
         case "View all roles":
+            [results] = await orgDb.getRoles();
             break;
         case "View all employees":
+            [results] = await orgDb.getEmployees();
             break;
         case "View employees by department":
+            [results] = await orgDb.getEmployeesByDept()
             break;
         case "View employees by role":
+            [results] = await orgDb.getEmployeesByRole();
             break;
         case "View employees by manager":
+            [results] = await orgDb.getEmployeesByManager();
             break;
         case "View total budget by department":
+            [results] = await orgDb.getBudget();
             break;
         default:
             return;
     }
-    inquirer
-        .prompt(queries.viewOptions)
-        .then((res) => handleOptionsResponse(res.menu));
-}
+    console.table(results);
+    subMenu(queries.viewOptions);
+};
 
+// this needs to be made into an async function, like the view counterpart above
 function handleEditQueries(res) {
     // switch case for determining which query to get for editing
     console.log("edit called");
@@ -113,5 +106,21 @@ function handleEditQueries(res) {
             break;
     }
 }
+
+function handleOptionsResponse(choice) {
+    if (choice.includes("Exit")) {
+        process.kill(process.pid, "SIGTERM");
+    } else if (choice.includes("Return")) {
+        main();
+    } else if (choice.includes("View")) {
+        handleViewQueries(choice);
+    } else {
+        handleEditQueries(choice);
+    }
+}
+
+
+
+
 
 main();

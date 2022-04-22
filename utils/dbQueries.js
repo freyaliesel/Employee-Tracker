@@ -5,26 +5,45 @@ function getDepartments() {
     return db.promise().query("SELECT * FROM departments");
 }
 
-// function getRoles() {
-//     db.promise().query(
-//         `SELECT roles.id, title, salary, departments.dept_name FROM roles JOIN departments ON department_id = departments.id;`,
-//         (err, results) => handleDbResponse(err, results)
-//     );
-// }
+function getRoles() {
+    return db
+        .promise()
+        .query(
+            `SELECT roles.id, title, salary, departments.dept_name FROM roles JOIN departments ON department_id = departments.id;`
+        );
+}
 
-// function getEmployees(orderMethod) {
-//     db.promise.query(
-//         `SELECT e.id, CONCAT(e.last_name, ', ', e.first_name) AS Employee, r.title, r.salary, e.manager_id, CONCAT(m.last_name, ', ', m.first_name) AS Manager, d.dept_name FROM employees e JOIN roles r ON e.role_id = r.id JOIN departments d ON r.department_id = d.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY ${orderMethod};`,
-//         (err, results) => handleDbResponse(err, results)
-//     );
-// }
+function getEmployees() {
+    return db
+        .promise()
+        .query(
+            `SELECT e.id, CONCAT(e.last_name, ', ', e.first_name) AS Employee, r.title, r.salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager, d.dept_name FROM employees e JOIN roles r ON e.role_id = r.id JOIN departments d ON r.department_id = d.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY e.id;`
+        );
+}
 
-// function getBudget() {
-//     db.promise.query(
-//         `SELECT d.dept_name, SUM(r.salary) AS budget FROM departments d JOIN roles r ON r.department_id = d.id JOIN employees e ON e.role_id = r.id GROUP BY d.id`,
-//         (err, results) => handleDbResponse(err, results)
-//     );
-// }
+function getEmployeesByDept() {
+    return db.promise().query(`SELECT d.dept_name, CONCAT(e.last_name, ', ', e.first_name) AS Employee, e.id, r.title, r.salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employees e JOIN roles r ON e.role_id = r.id JOIN departments d ON r.department_id = d.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY r.id;`);
+}
+
+function getEmployeesByRole() {
+    return db.promise().query(`SELECT r.title, CONCAT(e.last_name, ', ', e.first_name) AS Employee, e.id, r.salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager, d.dept_name FROM employees e JOIN roles r ON e.role_id = r.id JOIN departments d ON r.department_id = d.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY r.id;`);
+}
+
+function getEmployeesByManager() {
+    return db
+        .promise()
+        .query(
+            `SELECT CONCAT(m.last_name, ', ', m.first_name) AS Manager, CONCAT(e.last_name, ', ', e.first_name) AS Employee, e.id, r.title, r.salary, d.dept_name FROM employees e JOIN roles r ON e.role_id = r.id JOIN departments d ON r.department_id = d.id LEFT JOIN employees m ON e.manager_id = m.id ORDER BY m.id;`
+        );
+}
+
+function getBudget() {
+    return db
+        .promise()
+        .query(
+            `SELECT d.dept_name, SUM(r.salary) AS budget FROM departments d JOIN roles r ON r.department_id = d.id JOIN employees e ON e.role_id = r.id GROUP BY d.id`
+        );
+}
 
 // EDIT QUERIES
 function addDepartment(value) {
@@ -73,12 +92,15 @@ function removeEntry(table, id) {
 
 module.exports = {
     getDepartments,
-    // getRoles,
-    // getEmployees,
-    // getBudget,
+    getRoles,
+    getEmployees,
+    getEmployeesByDept,
+    getEmployeesByRole,
+    getEmployeesByManager,
+    getBudget,
     addDepartment,
     addRole,
     addEmployee,
     updateEntry,
-    removeEntry
+    removeEntry,
 };
