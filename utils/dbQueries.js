@@ -56,10 +56,10 @@ function addRole(title, salary, deptId) {
     return db
         .promise()
         .query(
-            `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?`,
-            title,
+            `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`,
+            [title,
             salary,
-            deptId
+            deptId]
         );
 }
 
@@ -67,11 +67,11 @@ function addEmployee(firstName, lastName, roleId, managerId) {
     return db
         .promise()
         .query(
-            `INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?)`,
-            firstName,
+            `INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`,
+            [firstName,
             lastName,
             roleId,
-            managerId
+            managerId]
         );
 }
 

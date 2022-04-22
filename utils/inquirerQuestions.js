@@ -56,8 +56,135 @@ const editOptions = [
     },
 ];
 
+const newDept = [
+    {
+        type: 'input',
+        name: 'deptName',
+        message: 'Name of new Department'
+    }
+]
+
+const newRole = [
+    {
+        type: 'input',
+        name: 'deptId',
+        message: 'Enter department ID for new role:'
+    },
+    {
+        type: 'input',
+        name: 'roleName',
+        message: 'Name of new Role:'
+    },
+    {
+        type: 'input',
+        name: 'salary',
+        message: 'Salary for new role:'
+    }
+]
+
+const newEmployee = [
+    {
+        type: 'input',
+        name: 'firstName',
+        message: 'Employee first name:'
+    },
+    {
+        type: 'input',
+        name: 'lastName',
+        message: 'Employee last name:'
+    },
+    {
+        type: 'input',
+        name: 'roleId',
+        message: 'Employee role:'
+    },
+    {
+        type: 'input',
+        name: 'managerId',
+        message: 'Manager ID:'
+    }
+]
+
+const updateEmployee = [
+    {
+        type: 'input',
+        name: 'empId',
+        message: 'Employee to update',
+        default() {
+            return 'ID'
+        }
+    },
+    {
+        type: 'input',
+        name: 'roleId',
+        message: 'New role for employee:',
+        default() {
+            return 'ID'
+        }
+    },
+    {
+        type: 'confirm',
+        name: 'changeMngr',
+        message: 'Update employee manager?'
+    },
+    {
+        type: 'input',
+        name: 'mgrId',
+        message: 'New manager ID:',
+        when(answers) {
+            return answers.changeMnger
+        }
+    }
+]
+
+const deleteDept = [
+    {
+        type: 'input',
+        name: 'deptId',
+        message: 'Enter department ID to remove'
+    },
+    {
+        type: 'confirm',
+        name: 'confirm',
+        message: (answers) => `Are you sure you want to remove department ${answers.deptId}? WARNING: This action cannot be undone, and will impact any roles currently assigned to this department.`,
+    }
+]
+
+const deleteRole = [
+    {
+        type: 'input',
+        name: 'roleId',
+        message: 'Enter role ID to remove'
+    },
+    {
+        type: 'confirm',
+        name: 'confirm',
+        message: (answers) => `Are you sure you want to remove role ${answers.roleId}? WARNING: This action cannot be undone, and will impact any employees currently assigned to this role.`,
+    }
+]
+
+const deleteEmployee = [
+    {
+        type: 'input',
+        name: 'empId',
+        message: 'Enter employee ID to remove'
+    },
+    {
+        type: 'confirm',
+        name: 'confirm',
+        message: (answers) => `Are you sure you want to remove employee ${answers.empId}? WARNING: This action cannot be undone, and will impact any direct reports currently assigned to this employee.`,
+    }
+]
+
 module.exports = {
     mainMenu,
     viewOptions,
     editOptions,
+    newDept,
+    newRole,
+    newEmployee,
+    updateEmployee,
+    deleteDept,
+    deleteRole,
+    deleteEmployee
 };
