@@ -7,10 +7,10 @@ const orgDb = require("./utils/dbQueries");
 // prompt user for input - should be recursive
 
 // REQUIRED
-// A view all departments prints a table to console with department names and ids
-// B view all roles prints a table to console with job title, role id, department it belongs to, and salary
-// C view all employees prints a table to console with employee id, first and last names, job title, department, salary, and manager they report to (if applicable)
-// D add a department prompts user to enter name of department - creates new department in database
+
+
+
+
 // E add a role prompts user to enter role name, salary, and department, creates new role in database
 // F add an employee prompts user to enter first and last names, role, and manager, creates new employee in database
 // G update employee role prompts user to select an employee to update, enter their new role
@@ -87,13 +87,20 @@ const handleEditQueries = async (choice) => {
             console.log(`${firstName} ${lastName} successfully added!\n`);
             break;
         // case "Update role":
-        //     // inquirer prompts then
+        //     [table] = await orgDb.getRoles();
+        //     console.table(table);
+        //     let answers = await inquirer.prompt(queries.upd
+        //         )
         //     updateEntry(table, values);
         //     break;
-        // case "Update employee":
-        //     // inquirer prompts then
-        //     updateEntry(table, values);
-        //     break;
+        case "Update employee":
+            [table] = await orgDb.getEmployeesByRole();
+            console.table(table);
+            answers = await inquirer.prompt(queries.updateEmployee);
+            console.log(answers)
+            response = await orgDb.updateEmployee(Number(answers.empId), Number(answers.roleId));
+            console.log(`Employee ${answers.empId} successfully updated!\n`);
+            break;
         // case "Remove department":
         //     // inquirer prompts then
         //     removeEntry(table, id);
