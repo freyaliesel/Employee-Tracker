@@ -21,8 +21,8 @@ function isValidNumber(value) {
 }
 
 function isValidSalary(value) {
-    if (!value || typeof value !== "number" || value < 7.25) return false;
-    if (value >= 10000 && value < 35568) {
+    if (!value || Number(value) < 7.25) return false;
+    if (Number(value) >= 10000 && value < 35568) {
         return false;
     } else {
         return true;
