@@ -4,7 +4,7 @@
 
 ## Description
 
-Content management system application run in the command line
+Bare-bones ontent management system application for business run in the command line
 
 ## Table of Contents
 
