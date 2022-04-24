@@ -38,7 +38,7 @@ const editOptions = [
         name: "menu",
         message: "Select an action: ",
         choices: [
-            // new inquirer.Separator(" ~~~ Add ~~~ "),
+            new inquirer.Separator(" ~~~ Edit ~~~ "),
             "Add a department",
             "Add a role",
             "Add an employee",
