@@ -57,7 +57,7 @@ function getBudget() {
 function addDepartment(value) {
     return db
         .promise()
-        .query(`INSERT INTO departments (dept_name) VALUES (?)`, value);
+        .query(`INSERT INTO departments (dept_name) VALUE (?)`, value);
 }
 
 function addRole(title, salary, deptId) {
@@ -84,9 +84,9 @@ function updateEmployee(id, roleId) {
         .query(`UPDATE employees SET role_id = ? WHERE id = ?;`, [roleId, id]);
 }
 
-function removeEntry(table, id) {
-    return db.promise().query(`DELETE FROM ? WHERE id = ?`, table, id);
-}
+// function removeEntry(table, id) {
+//     return db.promise().query(`DELETE FROM ? WHERE id = ?`, table, id);
+// }
 
 module.exports = {
     getDepartments,
@@ -100,5 +100,5 @@ module.exports = {
     addRole,
     addEmployee,
     updateEmployee,
-    removeEntry,
+    // removeEntry,
 };

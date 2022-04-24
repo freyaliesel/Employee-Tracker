@@ -55,9 +55,9 @@ const handleEditQueries = async (choice) => {
         case "Add a department":
             [table] = await orgDb.getDepartments();
             console.table(table);
-            const { answer } = await inquirer.prompt(queries.newDept);
-            response = await orgDb.addDepartment(answer);
-            console.log(`${answer} successfully added!\n`);
+            const answer = await inquirer.prompt(queries.newDept);
+            response = await orgDb.addDepartment(answer.deptName);
+            console.log(`${answer.deptName} successfully added!\n`);
             break;
         case "Add a role":
             [table] = await orgDb.getDepartments();
@@ -71,7 +71,7 @@ const handleEditQueries = async (choice) => {
                 Number(salary),
                 Number(deptId)
             );
-            console.log(`${answers.roleName} successfully added!\n`);
+            console.log(`${roleName} successfully added!\n`);
             break;
         case "Add an employee":
             [table] = await orgDb.getRoles();
