@@ -1,6 +1,6 @@
 "use strict";
 const inquirer = require("inquirer");
-const { isValidSalary, isValidNumber } = require("./utilfunctions");
+const { isValidSalary, isValidNumber, isValidString } = require("./utilfunctions");
 
 const mainMenu = [
     {
