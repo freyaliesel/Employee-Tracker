@@ -27,7 +27,8 @@ DB_DATABASE=mydb
 
 ## Usage
 
-example forthcoming
+Link to video showing useage
+https://drive.google.com/file/d/1rhEa_Z2Vj43AzUgF9cH6Ddi4vjXRRL4f/view
 
 ## Contact
 
