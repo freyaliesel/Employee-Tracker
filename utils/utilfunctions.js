@@ -1,3 +1,5 @@
+const { query } = require("./db");
+
 function isValidString(value) {
     if (!value || typeof value !== "string" || !value.trim().length) {
         return false;
@@ -32,5 +34,5 @@ function isValidSalary(value) {
 module.exports = {
     isValidString,
     isValidNumber,
-    isValidSalary,
+    isValidSalary
 };
